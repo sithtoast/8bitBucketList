@@ -2,8 +2,7 @@ source 'https://rubygems.org'
 
 ruby "2.1.1"
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', github: 'rails/rails', branch: '4-1-stable'
 
 gem 'bootstrap-sass'
 
@@ -11,7 +10,11 @@ gem 'devise'
 
 gem 'font-awesome-rails'
 
+gem 'giantbomb'
+
 gem 'pg'
+
+gem 'twitch'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -19,7 +22,7 @@ gem 'sass-rails', '~> 4.0.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
-# Use CoffeeScript for .js.coffee assets and views
+# Use CoffeeScript for .js.coffee assets and views ... really just for heroku
 gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
