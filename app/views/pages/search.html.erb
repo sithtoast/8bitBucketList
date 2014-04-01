@@ -1,0 +1,26 @@
+<div id="search_result">
+<% if !@results.empty? %>
+	<% @results.each do |result|  %> 
+	<div class="well game">
+		<div class="name">
+			<%= result["name"] %>
+		</div>
+		<div class="description">
+			<%= result["deck"] %>
+		</div>
+		<div class="platforms">
+		  <% result["platforms"].each do |platform| %>
+		    <span class="badge"><%= platform["name"] %></span>
+		  <% end %>
+		</div>
+		<div class="developers">
+			<% result["developers"].each do |developer| %>
+				<span class="badge"><%= developer["name"] %></span>
+			<% end %>
+		</div>
+	</div>
+	<% end %>
+<% else %>
+We were unable to find a game by the name of <%= @game %>
+<% end %>
+</div>
