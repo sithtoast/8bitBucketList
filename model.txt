@@ -1,0 +1,24 @@
+User model -
+
+First name
+Last name
+Username
+Bio
+twitter
+twitch
+giant bomb
+
+
+games model -
+
+game name
+platform
+genre
+concepts
+esrb (E, E10, T, M)
+rating
+userrating (1-5 stars)
+publisher
+developer
+
+user game list

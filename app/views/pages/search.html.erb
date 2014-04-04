@@ -29,6 +29,12 @@
 				<% end %>
 			</div>
 		<% end %>
+		<% if user_signed_in? %>
+			<%= form_for Game.new do |f| %>
+				<%= f.hidden_field :game_id, value: result.id %>
+				<button class = "btn-primary btn"><%= fa_icon "plus" %>Add Game to List</button>
+			<% end %> 
+		<% end %>
 	</div>
 	<% end %>
 <% else %>

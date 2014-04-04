@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140401042533) do
+ActiveRecord::Schema.define(version: 20140402051248) do
 
   create_table "concepts", force: true do |t|
     t.string   "name"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20140401042533) do
     t.string   "publisher"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "giantbomb_id"
   end
 
   create_table "genres", force: true do |t|

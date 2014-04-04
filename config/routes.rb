@@ -1,4 +1,5 @@
 Eightbitbacklog::Application.routes.draw do
+
   get 'home/index'
   get 'search', to: 'pages#search'
 
@@ -6,4 +7,6 @@ Eightbitbacklog::Application.routes.draw do
   get "pages/index"
 
   root 'pages#index'
+  
+  resource :games
 end
