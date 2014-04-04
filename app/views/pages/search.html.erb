@@ -30,10 +30,14 @@
 			</div>
 		<% end %>
 		<% if user_signed_in? %>
-			<%= form_for Game.new do |f| %>
-				<%= f.hidden_field :game_id, value: result.id %>
-				<button class = "btn-primary btn"><%= fa_icon "plus" %>Add Game to List</button>
-			<% end %> 
+			<% if current_user.has_game?(result) %>
+				<div><%= fa_icon "check" %> Game in already in List</div>
+			<% else %>
+				<%= form_for Game.new do |f| %>
+					<%= f.hidden_field :game_id, value: result.giantbomb_id %>
+					<button class = "btn-primary btn"><%= fa_icon "plus" %>Add Game to List</button>
+				<% end %>
+			<% end %>
 		<% end %>
 	</div>
 	<% end %>

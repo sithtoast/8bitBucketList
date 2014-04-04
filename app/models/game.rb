@@ -1,10 +1,10 @@
 class Game < ActiveRecord::Base
-  has_many :gamelistgames
-  has_many :gameconcepts
-  has_many :gamegenres
-  has_many :gameplatforms
-  has_many :gamedevelopers
-  has_many :gamepublishers
+  has_many :gamelistgames, dependent: :destroy
+  has_many :gameconcepts, dependent: :destroy
+  has_many :gamegenres, dependent: :destroy
+  has_many :gameplatforms, dependent: :destroy
+  has_many :gamedevelopers, dependent: :destroy
+  has_many :gamepublishers, dependent: :destroy
   has_many :gamelists,  through: :gamelistgames
   has_many :concepts,   through: :gameconcepts
   has_many :genres,     through: :gamegenres
