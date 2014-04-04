@@ -5,8 +5,7 @@ class CreateGames < ActiveRecord::Migration
       t.string :esrb
       t.integer :rating
       t.integer :userrating
-      t.string :developer
-      t.string :publisher
+      t.string :deck
 
       t.timestamps
     end

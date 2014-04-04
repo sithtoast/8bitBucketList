@@ -11,9 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140402051248) do
+ActiveRecord::Schema.define(version: 20140404043204) do
 
   create_table "concepts", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "developers", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -22,6 +28,13 @@ ActiveRecord::Schema.define(version: 20140402051248) do
   create_table "gameconcepts", force: true do |t|
     t.integer  "game_id"
     t.integer  "concept_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "gamedevelopers", force: true do |t|
+    t.integer  "game_id"
+    t.integer  "developer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -56,13 +69,19 @@ ActiveRecord::Schema.define(version: 20140402051248) do
     t.datetime "updated_at"
   end
 
+  create_table "gamepublishers", force: true do |t|
+    t.integer  "game_id"
+    t.integer  "publisher_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "games", force: true do |t|
     t.string   "name"
     t.string   "esrb"
     t.integer  "rating"
     t.integer  "userrating"
-    t.string   "developer"
-    t.string   "publisher"
+    t.string   "deck"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "giantbomb_id"
@@ -75,6 +94,12 @@ ActiveRecord::Schema.define(version: 20140402051248) do
   end
 
   create_table "platforms", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "publishers", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
