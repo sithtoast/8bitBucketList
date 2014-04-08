@@ -1,9 +1,17 @@
-<% @games.each do |game| %>
+<% @games.each do |gamelistgame| %>
+<% game = Game.find(gamelistgame.game_id) %>
   <div class="game well">
     <h2><%= game.name %></h2>
     <div class="description">
       <%= game.deck %>
     </div>
+    <% if !gamelistgame.platforms.nil? %>
+			<div class="platforms">
+			  <% gamelistgame.platforms.each do |platform| %>
+			    <span class="badge"><%= platform["name"] %></span>
+			  <% end %>
+			</div>
+		<% end %>
     <%= link_to "Remove", gamelist_path(id: game.id), method: :delete, class: "btn btn-danger" %>
   </div>
 <% end %>

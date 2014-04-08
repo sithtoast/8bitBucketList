@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404043204) do
+ActiveRecord::Schema.define(version: 20140408043226) do
 
   create_table "concepts", force: true do |t|
     t.string   "name"
@@ -42,6 +42,13 @@ ActiveRecord::Schema.define(version: 20140404043204) do
   create_table "gamegenres", force: true do |t|
     t.integer  "game_id"
     t.integer  "genre_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "gamelistgameplatforms", force: true do |t|
+    t.integer  "gamelistgame_id"
+    t.integer  "platform_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -10,9 +10,13 @@
 		</div>
 		<% if !result.platforms.nil? %>
 			<div class="platforms">
+			  <div class="btn-group" data-toggle="buttons">
 			  <% result.platforms.each do |platform| %>
-			    <span class="badge"><%= platform["name"] %></span>
+			    <label class="btn btn-default">
+			      <input type="checkbox" name="options" class="platbtn" value= <%=platform.id %> ><%= platform.name %></label>
+<!-- 			    <span class="badge"><%= platform["name"] %></span> -->
 			  <% end %>
+        </div>
 			</div>
 		<% end %>
 		<% if !result.developers.nil? %>
@@ -37,6 +41,23 @@
 					<%= f.hidden_field :game_id, value: result.giantbomb_id %>
 					<%= f.hidden_field :page, value: @page %>
 					<%= f.hidden_field :query, value: @query %>
+<!--
+          <span class="platforms">
+            <div class="btn-group" data-toggle="buttons">
+-->
+              <% result.platforms.each do |platform| %>
+                  <!--
+<label class="btn btn-default">
+                  <input type="checkbox" value= <%=platform.id %>><%=platform.name %></label>
+            </div>
+          </div>
+-->
+              <span class='select_platform'>
+              <%= check_box_tag "game[platforms][id][]", platform.id, false, class: platform.id  %>
+<!--                 <%= check_box_tag "game[platforms][id][]", platform.id %> -->
+              <%= label_tag "game[platforms][name][]", platform.name %>
+              </span>
+            <% end %>
 					<button class = "btn-primary btn"><%= fa_icon "plus" %>Add Game to List</button>
 				<% end %>
 			<% end %>
