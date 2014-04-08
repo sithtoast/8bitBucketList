@@ -1,17 +1,61 @@
+<div class="container">
+<h2>My Bucketlist</h2>
+<table class="table table-striped" id="yourgamelist" align="center">
+  <thead>
+    <tr>
+      <th>Game</th>
+      <th>Platforms</th>
+      <th>Developer</th>
+      <th>Publisher</th>
+      <th>User Rating</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
 <% @games.each do |gamelistgame| %>
 <% game = Game.find(gamelistgame.game_id) %>
-  <div class="game well">
-    <h2><%= game.name %></h2>
+<!--   <div class="game well"> -->
+    <tbody>
+    <tr>
+    <td><%= game.name %></td>
+<!--
     <div class="description">
       <%= game.deck %>
     </div>
+-->
+<!--     Hide all but one of these, when you hover, you'll see the rest. -->
     <% if !gamelistgame.platforms.nil? %>
-			<div class="platforms">
+
+<!-- 			<div class="platforms"> -->
 			  <% gamelistgame.platforms.each do |platform| %>
-			    <span class="badge"><%= platform["name"] %></span>
+			   <td> <span class="badge"><%= platform["name"] %></span>
 			  <% end %>
-			</div>
+			  </td>
+<!-- 			</div> -->
 		<% end %>
-    <%= link_to "Remove", gamelist_path(id: game.id), method: :delete, class: "btn btn-danger" %>
+		
+		<% if !game.developers.nil? %>
+  		<% game.developers.each do |developer| %>
+  		  <td><span class="badge"><%= developer["name"] %></span></td>
+  		<% end %>
+		<% end %>
+<!--
+    <td><span class="badge">Placeholder</span></td>
+    <td><span class="badge">Placeholder</span></td>
+-->
+    <td id="5stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></td>
+    <td><span><input type="radio" name="status" value="Beaten"> Beaten &nbsp;
+    <input type="radio" name="status" value="In Progress"> In Progress &nbsp;
+    <input type="radio" name="status" valus="Haven't Played"> Haven't Played</span>
+    </td>
+    <td>
+<!--     Placeholder for the edit button -->
+    <%= link_to "E", gamelist_path(id: game.id), method: :get, class: "btn btn-default" %>
+    <%= link_to "R", gamelist_path(id: game.id), method: :delete, class: "btn btn-danger" %>
+    </td>
+    </tr>
   </div>
 <% end %>
+  </tbody>
+</table>
+</div>
