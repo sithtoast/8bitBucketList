@@ -1,16 +1,5 @@
 class UsersController < ApplicationController
-  def index
-  end
-
-  def show
-  end
-
-  def update
-  end
-
-  def create
-  end
-
-  def delete
+  def gamelist
+    @games = current_user.gamelist.games
   end
 end

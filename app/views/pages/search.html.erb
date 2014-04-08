@@ -31,17 +31,31 @@
 		<% end %>
 		<% if user_signed_in? %>
 			<% if current_user.has_game?(result) %>
-				<div><%= fa_icon "check" %> Game in already in List</div>
+				<div><%= fa_icon "check" %> Game is already in List</div>
 			<% else %>
 				<%= form_for Game.new do |f| %>
 					<%= f.hidden_field :game_id, value: result.giantbomb_id %>
+					<%= f.hidden_field :page, value: @page %>
+					<%= f.hidden_field :query, value: @query %>
 					<button class = "btn-primary btn"><%= fa_icon "plus" %>Add Game to List</button>
 				<% end %>
 			<% end %>
 		<% end %>
 	</div>
 	<% end %>
+<ul class="pager">
+  <% if @previous != 0 %>
+    <li><%= link_to "Previous", search_path(query: @query, page: @previous) %></li>
+  <% else %>
+    <li readonly = "readonly" ><a href="javascript:void(0)">Previous</a></li>
+  <% end %>
+  <% if @next != 0 %>
+    <li><%= link_to "Next", search_path(query: @query, page: @next) %></li>
+  <% else %>
+    <li readonly = "readonly"><a href="javascript:void(0)">Next</a></li>
+  <% end %>
+</ul>
 <% else %>
-We were unable to find a game by the name of <%= @game %>
+We were unable to find a game by the name of <%= @query %>
 <% end %>
 </div>

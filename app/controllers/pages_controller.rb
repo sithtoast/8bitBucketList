@@ -4,14 +4,30 @@ class PagesController < ApplicationController
 
   def search
     if params[:query]
-      @game = params[:query]
+      @page = 1
+      @previous = 0
+      @next = 2
+      @query = params[:query]
       @search = GiantBomb::Search.new
-      @search.limit(1) # limits number of returned resources
+      if params[:page]
+		  	@page = params[:page]
+		  	@previous = params[:page].to_i - 1
+		  	@next = params[:page].to_i + 1
+		  	@search.limit(10 * params[:page].to_i) # limits number of returned resources
+      else
+        @search.limit(10)
+      end
       @search.resources('game') # determines type(s) of resources
       @search.fields('id') # limits fields returned
       @search.offset(100) # sets the offset
-      @search.query(@game) # the query to search against
+      @search.query(@query) # the query to search against
       @results = @search.fetch # makes request
+      if params[:page]
+        @results = @results.last(10)
+        if @results.count < 10
+          @next = 0
+        end
+      end
 
       @temp = []
       @results.each do |result|

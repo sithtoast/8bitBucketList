@@ -4,7 +4,8 @@ class GamesController < ApplicationController
 		current_user.gamelist.gamelistgames.create(game_id: @game.id)
 
 		respond_to do |format|
-			respond.js {}
+			format.js {}
+			format.html {redirect_to search_path(query: params[:game][:query], page: params[:game][:page])}
 		end
 	end
 end

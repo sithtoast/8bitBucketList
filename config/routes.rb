@@ -9,4 +9,7 @@ Eightbitbacklog::Application.routes.draw do
   root 'pages#index'
   
   resource :games
+  
+  get 'gamelist', to: 'users#gamelist'
+  delete 'gamelist', to: 'gamelists#destroy'
 end

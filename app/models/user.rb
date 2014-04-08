@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   	gamelist.save
   end
 
-	def self.has_game?(game)
+	def has_game?(game)
 		self.gamelist.games.include?(game)
 	end
 end
