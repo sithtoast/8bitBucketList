@@ -1,82 +1,79 @@
 <div id="search_result">
-<% if !@results.empty? %>
-	<% @results.each do |result|  %>
-	<div class="well game">
-		<div class="name">
-			<%= result.name %>
-		</div>
-		<div class="description">
-			<%= result.deck %>
-		</div>
-		<% if !result.platforms.nil? %>
-			<div class="platforms">
-			  <div class="btn-group" data-toggle="buttons">
-			  <% result.platforms.each do |platform| %>
-			    <label class="btn btn-default">
-			      <input type="checkbox" name="options" class="platbtn" value= <%=platform.id %> ><%= platform.name %></label>
-<!-- 			    <span class="badge"><%= platform["name"] %></span> -->
-			  <% end %>
-        </div>
-			</div>
-		<% end %>
-		<% if !result.developers.nil? %>
-			<div class="developers">
-				<% result.developers.each do |developer| %>
-					<span class="badge" style="background-color:#428BCA;"><%= developer["name"] %></span>
+	<% if !@results.empty? %>
+		<% @results.each do |result|  %>
+			<div class="well game">
+				<div class="name">
+					<%= result.name %>
+				</div>
+				<div class="description">
+					<%= result.deck %>
+				</div>
+				<% if !result.developers.nil? %>
+					<div class="developers">
+						<% result.developers.each do |developer| %>
+							<span class="badge" style="background-color:#428BCA;"><%= developer["name"] %></span>
+						<% end %>
+					</div>
+				<% end %>
+				<% if !result.genres.nil? %>
+					<div class="genres">
+						<% result.genres.each do |genre| %>
+						<span class="badge" style="background-color: #c0392b;"><%= genre["name"] %></span>
+						<% end %>
+					</div>
+				<% end %>
+				<% if user_signed_in? %>
+					<% if current_user.has_game?(result) %>
+						<div><%= fa_icon "check" %> Game is already in List</div>
+					<% else %>
+						<%= form_for Game.new do |f| %>
+							<%= f.hidden_field :game_id, value: result.giantbomb_id %>
+							<%= f.hidden_field :page, value: @page %>
+							<%= f.hidden_field :query, value: @query %>
+		          <% result.platforms.each do |platform| %>
+		            <span class='select_platform'>
+									<label class="badge platform">
+										<%= check_box_tag "game[platforms][id][]", platform.id, false %>
+										<%= platform.name %>
+									</label>
+		            </span>
+		          <% end %>
+							<button class = "btn-primary btn"><%= fa_icon "plus" %>Add Game to List</button>
+						<% end %>
+					<% end %>
+				<% else %>
+					<% if !result.platforms.nil? %>
+						<div class="platforms">
+							<% result.platforms.each do |platform| %>
+								<span class="badge"><%= platform.name %></span>
+							<% end %>
+						</div>
+					<% end %>
 				<% end %>
 			</div>
 		<% end %>
-		<% if !result.genres.nil? %>
-			<div class="genres">
-				<% result.genres.each do |genre| %>
-				<span class="badge" style="background-color: #c0392b;"><%= genre["name"] %></span>
-				<% end %>
-			</div>
-		<% end %>
-		<% if user_signed_in? %>
-			<% if current_user.has_game?(result) %>
-				<div><%= fa_icon "check" %> Game is already in List</div>
-			<% else %>
-				<%= form_for Game.new do |f| %>
-					<%= f.hidden_field :game_id, value: result.giantbomb_id %>
-					<%= f.hidden_field :page, value: @page %>
-					<%= f.hidden_field :query, value: @query %>
-<!--
-          <span class="platforms">
-            <div class="btn-group" data-toggle="buttons">
--->
-              <% result.platforms.each do |platform| %>
-                  <!--
-<label class="btn btn-default">
-                  <input type="checkbox" value= <%=platform.id %>><%=platform.name %></label>
-            </div>
-          </div>
--->
-              <span class='select_platform'>
-              <%= check_box_tag "game[platforms][id][]", platform.id, false, class: platform.id  %>
-<!--                 <%= check_box_tag "game[platforms][id][]", platform.id %> -->
-              <%= label_tag "game[platforms][name][]", platform.name %>
-              </span>
-            <% end %>
-					<button class = "btn-primary btn"><%= fa_icon "plus" %>Add Game to List</button>
-				<% end %>
-			<% end %>
-		<% end %>
-	</div>
+		<ul class="pager">
+		  <% if @previous != 0 %>
+		    <li><%= link_to "Previous", search_path(query: @query, page: @previous) %></li>
+		  <% else %>
+		    <li readonly = "readonly" ><a href="javascript:void(0)">Previous</a></li>
+		  <% end %>
+		  <% if @next != 0 %>
+		    <li><%= link_to "Next", search_path(query: @query, page: @next) %></li>
+		  <% else %>
+		    <li readonly = "readonly"><a href="javascript:void(0)">Next</a></li>
+		  <% end %>
+		</ul>
+	<% else %>
+		We were unable to find a game by the name of <%= @query %>
 	<% end %>
-<ul class="pager">
-  <% if @previous != 0 %>
-    <li><%= link_to "Previous", search_path(query: @query, page: @previous) %></li>
-  <% else %>
-    <li readonly = "readonly" ><a href="javascript:void(0)">Previous</a></li>
-  <% end %>
-  <% if @next != 0 %>
-    <li><%= link_to "Next", search_path(query: @query, page: @next) %></li>
-  <% else %>
-    <li readonly = "readonly"><a href="javascript:void(0)">Next</a></li>
-  <% end %>
-</ul>
-<% else %>
-We were unable to find a game by the name of <%= @query %>
-<% end %>
 </div>
+<script>
+	$(".platform").on("click", function( e ){
+		if( e.target.tagName.toUpperCase() !== 'INPUT' ) {
+			$(this).toggleClass("checked");
+        var cbox = $(this).find('input:checkbox')[0];
+        cbox.checked = !cbox.checked;
+    }
+	});
+</script>
