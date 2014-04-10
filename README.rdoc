@@ -9,6 +9,7 @@ Things that are not working as intended:
 * Platforms do not show up in Gamelist
 * Genres do not show up in Gamelist
 * Only sign in via twitter works, otherwise, devise says that the username and password are wrong.
+* Adding things to your profile requires a password! Problem is that when you sign in with say, twitter, you don't know what your password is!Disable it!
 
 Things that still need to be done:
 
