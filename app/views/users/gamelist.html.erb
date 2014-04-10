@@ -5,8 +5,8 @@
       <tr>
         <th>Game</th>
         <th>Platforms</th>
+        <th>Genre</th>
         <th>Developer</th>
-        <th>Publisher</th>
         <th>User Rating</th>
         <th>Status</th>
         <th>Actions</th>
@@ -21,11 +21,21 @@
         <% if !gamelistgame.platforms.nil? %>
           <td>
             <% gamelistgame.platforms.each do |platform| %>
-              <span class="badge"><%= platform["name"] %></span>
+              <span class="badge"><%= platform["abbreviation"] %></span>
             <% end %>
           </td>
         <% else %>
           <td></td>
+        <% end %>
+
+        <% if !game.genres.nil? %>
+        <td>
+          <% game.genres.each do |genre| %>
+            <span class="badge"><% genre["name"] %></span>
+            <% end %>
+        </td>
+        <% else %>
+        <td></td>
         <% end %>
 
         <% if !game.developers.nil? %>
@@ -38,7 +48,8 @@
           <td></td>
         <% end %>
 
-        <% if !game.publishers.nil? %>
+       <!--
+ <% if !game.publishers.nil? %>
           <td>
             <% game.publishers.each do |publisher| %>
               <span class="badge"><%= publisher["name"] %></span>
@@ -47,6 +58,7 @@
         <% else %>
           <td></td>
         <% end %>
+-->
 
         <td id="five_stars">
           <i class="fa fa-star"></i>

@@ -38,14 +38,14 @@
 									</label>
 		            </span>
 		          <% end %>
-							<button class = "btn-primary btn"><%= fa_icon "plus" %>Add Game to List</button>
+							<button class = "btn-primary btn"><%= fa_icon "plus" %>&nbsp;Add Game to List</button>
 						<% end %>
 					<% end %>
 				<% else %>
 					<% if !result.platforms.nil? %>
 						<div class="platforms">
 							<% result.platforms.each do |platform| %>
-								<span class="badge"><%= platform.name %></span>
+								<span class="badge"><%= platform.abbreviation %></span>
 							<% end %>
 						</div>
 					<% end %>

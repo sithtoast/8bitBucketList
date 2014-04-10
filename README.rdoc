@@ -1,28 +1,29 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+v.0.05
 
-Things you may want to cover:
+Things that are not working as intended:
 
-* Ruby version
+* Radio buttons on Game List page
+* Search form in navbar
+* Platforms do not show up in Gamelist
+* Genres do not show up in Gamelist
+* Only sign in via twitter works, otherwise, devise says that the username and password are wrong.
 
-* System dependencies
+Things that still need to be done:
 
-* Configuration
+* Front page
+* Graphs on gamelist page
+* More fleshed out profile pages
+* Recommendation engine
+* Add picture to user profile
 
-* Database creation
+Things done since last commit/version:
 
-* Database initialization
+* Navbar added
+* Username field added
+* Sign in/out buttons on navbar added
 
-* How to run the test suite
+Things changed since last commit/version:
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Showing Genres instead of publishers on gamelist page

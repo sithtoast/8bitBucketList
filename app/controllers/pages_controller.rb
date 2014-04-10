@@ -40,7 +40,7 @@ class PagesController < ApplicationController
 
           if !@resultgame.platforms.nil?
             @resultgame.platforms.each do |platform|
-              @platform = Platform.where(name: platform["name"]).first_or_create
+              @platform = Platform.where(name: platform["abbreviation"]).first_or_create
               @game.gameplatforms.create(platform_id: @platform.id)
             end
           end
