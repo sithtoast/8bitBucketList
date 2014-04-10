@@ -4,6 +4,8 @@ ruby "2.1.1"
 
 gem 'rails', github: 'rails/rails', branch: '4-1-stable'
 
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+
 gem 'bootstrap-sass'
 
 gem 'devise'
@@ -13,6 +15,8 @@ gem 'font-awesome-rails'
 gem 'giantbomb'
 
 gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 
 gem 'pg'
 
